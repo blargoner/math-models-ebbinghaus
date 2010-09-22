@@ -1,0 +1,591 @@
+% John Peloquin
+% Selected Exercises from "Finite Model Theory"
+\documentclass[letterpaper]{article}
+\usepackage{amsmath,amsthm,amssymb,enumitem,times}
+
+% Variables
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\G}{\mathcal{G}}
+\renewcommand{\H}{\mathcal{H}}
+\newcommand{\Hx}{\mathfrak{H}}
+\renewcommand{\S}{\mathcal{S}}
+\newcommand{\cg}{C\text{-}G}
+
+% Sets
+\newcommand{\ps}{\mathcal{P}}
+\newcommand{\free}{\mathrm{free}}
+\newcommand{\dom}{\mathrm{dom}}
+\newcommand{\rng}{\mathrm{rng}}
+\newcommand{\pisos}{\mathrm{Part}}
+\newcommand{\fo}{\mathrm{FO}}
+\newcommand{\so}{\mathrm{SO}}
+\newcommand{\mso}{\mathrm{MSO}}
+\renewcommand{\L}{\mathrm{L}}
+\newcommand{\Lio}{\L_{\infty\omega}}
+\newcommand{\Lioo}{\Lio^{\omega}}
+\newcommand{\Loo}{\L_{\omega_1\omega}}
+\newcommand{\C}{\mathrm{C}}
+\newcommand{\Cio}{\C_{\infty\omega}}
+\newcommand{\ord}{\mathrm{ORD}}
+\newcommand{\graph}{\mathrm{GRAPH}}
+\newcommand{\conn}{\mathrm{CONN}}
+\newcommand{\even}{\mathrm{EVEN}}
+\newcommand{\itypes}{\mathrm{IT}}
+\newcommand{\ep}{\mathrm{EP}}
+\newcommand{\mods}{\mathrm{Mod}}
+\newcommand{\obar}[1]{\overline{#1}}
+\newcommand{\supp}{\mathrm{supp}}
+\newcommand{\ct}{\mathrm{ct}}
+
+% Connectives
+\newcommand{\limp}{\rightarrow}
+\newcommand{\liff}{\leftrightarrow}
+\newcommand{\biglor}{\bigvee}
+\newcommand{\bigland}{\bigwedge}
+
+% Relations
+\newcommand{\iso}{\cong}
+\newcommand{\con}{\sim}
+\newcommand{\msoequiv}{\equiv^{\mso}}
+\newcommand{\fimp}{\mathrel{\models_{\mathrm{fin}}}}
+
+% Operations
+\newcommand{\union}{\cup}
+\newcommand{\dunion}{\uplus}
+\newcommand{\sect}{\cap}
+\newcommand{\diff}{\mathrel{\backslash}}
+\newcommand{\abs}[1]{|{#1}|}
+\newcommand{\card}[1]{\|{#1}\|}
+\newcommand{\qr}{\mathrm{qr}}
+
+% Quantifiers
+\newcommand{\ege}[1]{\exists^{\ge{#1}}}
+\newcommand{\eeq}[1]{\exists^{={#1}}}
+
+% Templates
+\newcommand{\bookchapter}[1]{\section*{Chapter~{#1}}}
+\newcommand{\booksection}[1]{\subsection*{Section~{#1}}}
+\newcommand{\exercise}[1]{\noindent\textsc{Exercise~{#1}.}}
+\newcommand{\proposition}[1]{\noindent\textsc{Proposition~{#1}.}}
+\newcommand{\example}[1]{\noindent\textsc{Example~{#1}.}}
+\newcommand{\note}{\noindent\textsc{Note.}\ }
+
+\theoremstyle{plain}
+\newtheorem*{lem}{Lemma}
+
+\title{Selected Exercises from \emph{Finite Model Theory}}
+\author{John Peloquin}
+
+\begin{document}
+\maketitle
+% Abstract
+\begin{abstract}
+This paper contains selected exercises from the text \emph{Finite Model Theory} by Ebbinghaus and Flum (see~\cite{ebbing99}). Exercises are organized by chapter and section, and are numbered as in the text.
+\end{abstract}
+
+% Exercises
+\bookchapter{2}
+\booksection{2.3}
+\exercise{2.3.2}
+Let $(I_j)_{j\le m}:\A\iso_m\B$ and set
+$$\obar{I}_j=\{\,q\in\pisos(\A,\B)\mid\text{$q\subseteq p$ for some $p\in I_j$}\,\}$$
+Then $(\obar{I}_j)_{j\le m}:\A\iso_m\B$. Furthermore, $\obar{W}_j(\A,\B)=W_j(\A,\B)$ (where $W_j(\A,\B)$~is defined as on p.~20).
+\begin{proof}
+Choose $p_j\in I_j$ for each $j\le m$. Note that $\emptyset\mapsto\emptyset\in\pisos(\A,\B)$, and $\emptyset\mapsto\emptyset\subseteq p_j$ for each~$j$, so $\emptyset\mapsto\emptyset\in\obar{I}_j$ for all $j\le m$. Now suppose $q\in\obar{I}_{j+1}$ for $j<m$ and $a\in A$. We have $q\subseteq p$ for some $p\in I_{j+1}$, and by the forth property of~$(I_j)_{j\le m}$, there exists a $p'\in I_j$ where $q\subseteq p\subseteq p'$ and $a\in\dom(p')$. Since $I_j\subseteq\obar{I}_j$, $p'\in\obar{I}_j$. Thus $(\obar{I}_j)_{j\le m}$~satisfies the forth property. Similarly for the back property. Thus $(\obar{I}_j)_{j\le m}:\A\iso_m\B$ as desired.
+
+It is immediate that $W_j(\A,\B)\subseteq\obar{W}_j(\A,\B)$. Suppose $\obar{a}'\mapsto\obar{b}'\in\obar{W}_j(\A,\B)$, so
+$$\obar{a}'\mapsto\obar{b}'\subseteq\obar{a}\mapsto\obar{b}$$
+for some $\obar{a}\mapsto\obar{b}\in W_j(\A,\B)$ where the duplicator wins $G_j(\A,\obar{a},\B,\obar{b})$. Then it is clear that the duplicator has a winning strategy for $G_j(\A,\obar{a}',\B,\obar{b}')$. Indeed, for any play, the duplicator can simply do what it would do in the corresponding play of $G_j(\A,\obar{a},\B,\obar{b})$. After $j$~moves, the resulting map will be a subset of the partial isomorphism that would have resulted in the corresponding play of $G_j(\A,\obar{a},\B,\obar{b})$. Thus the resulting map will itself be a partial isomorphism, so the duplicator will win the play.
+\end{proof}
+
+\example{2.3.5}
+Let $\tau$~be an arbitrary vocabulary. We verify that $\even[\tau]$~is not axiomatizable in~$\fo[\tau]$.
+\begin{proof}
+For $m\ge0$, let $\A$~ be a $\tau$-structure with $\card{\A}=m+1$ satisfying the following:
+\begin{enumerate}[itemsep=0pt]
+\item For each $n$-ary $R\in\tau$, $R^{\A}=\emptyset$, and
+\item For some $a\in A$, $c^{\A}=a$ for all $c\in\tau$.
+\end{enumerate}
+Denote by~$\B$ the structure obtained from~$\A$ by adjoining a new (unnamed) element~$u$. Then $\card{\B}=m+2$, so $\A\in\even[\tau]$ iff $B\not\in\even[\tau]$. We claim $\A\iso_m\B$. Define
+$$I_j=\{\,p\in\pisos(\A,\B)\mid\card{\dom(p)}\le m-j+1\,\}$$
+for $0\le j\le m$. Note that $a\mapsto a\in I_j$ for all~$j$. Furthermore, $(I_j)_{j\le m}$~clearly satisfies the forth property, for any elements in~$A$ can simply be mapped to themselves. For the back property, suppose $p\in I_{j+1}$ for some $j+1\le m$ and $b\in B$, $b\not\in\rng(p)$. If $b\ne u$, simply choose $q=p\union\{(b,b)\}\in I_j$. If $b=u$ and there are no constant symbols in~$\tau$, then choose any $a'\in A\diff\dom(p)$ (such an element must exist since $\card{\dom(p)}\le m$); it follows that $q=p\union\{(a',b)\}\in I_j$. If there are constant symbols in~$\tau$, note that there are $m$~unnamed elements in~$A$, and the number of unnamed elements in~$\dom(p)$ is
+$$\card{\dom(p)}-1\le m-j-1\le m-1$$
+Thus we can choose an unnamed $a'\in A\diff\dom(p)$ and $q=p\union\{(a',b)\}\in I_j$.
+
+By Corollary~2.3.4, it follows that we can find, for arbitrary $m\ge0$, two finite structures $\A$~and~$\B$ with $\A\in\even[\tau]$, $\B\not\in\even[\tau]$, and $\A\equiv_m\B$. By Theorem 2.2.12, it follows that $\even[\tau]$~is not axiomatizable in~$\fo[\tau]$ as claimed.
+\end{proof}
+
+\example{2.3.7}
+Let $\tau=\{<,\min,\max\}$ and $\sigma=\tau\union\{E\}$. For $n\ge3$, let $\A_n$~be the ordered $\tau$-structure with domain $A_n=\{0,\ldots,n\}$ and $\tau$-symbols interpreted in the natural way. Define
+$$E^{\A_n}=\{\,(i,j)\mid\abs{i-j}=2\,\}\union\{(0,n),(n,0),(1,n-1),(n-1,1)\}$$
+We verify that the graph~$(\A_n,E^{\A_n})$ is connected iff $n$~is odd.
+\begin{proof}
+Suppose $n$~is odd and let $m_1,m_2\in A_n$. If $m_1$~and~$m_2$ are both even, then $\abs{m_2-m_1}$ is even, hence $m_1=m_2$ or else there exists a sequence of edges connecting them; in either case, $m_1\con m_2$. Similarly if $m_1$~and~$m_2$ are both odd. Suppose, say, $m_1$~is even and $m_2$~is odd. Since $n$~is odd, $\abs{n-m_2}$~is even, hence there exists a sequence of edges connecting $m_2$~to~$n$, and then to~$0$ since $(n,0)\in E^{\A_n}$; now $m_1\con 0$ by a previous case, so $m_1\con m_2$ as desired.
+
+Conversely, suppose $n$~is even. We claim that no even vertex is connected to an odd vertex. Indeed, looking at~$E^{\A_n}$, we see that since $n$~is even, all edges preserve the parity of the vertices they connect, so there are no paths between vertices of different parity. Since there exist both even and odd vertices in~$A_n$ (for example, $0$~and~$1$), it follows that $(\A_n,E^{\A_n})$ is disconnected.
+\end{proof}
+
+Let $m\ge2$ and $l,k\ge 2^m$. Let $I_j$~be the set of partial isomorphisms from Example~2.3.6 from $\A_l|_{\tau}$~to~$\A_k|_{\tau}$. We verify that for $j\ge 2$ and $p\in I_j$, $p$~preserves~$E$.
+\begin{proof}
+Let $j\ge 2$, $p\in I_j$ and $m_1,m_2\in\dom(p)$. Suppose that $(m_1,m_2)\in E^{\A_n}$. If $|m_1-m_2|=2<2^j$, then $|p(m_1)-p(m_2)|=2$, so $(p(m_1),p(m_2))\in E^{\A_n}$. If $m_1$~and~$m_2$ are (respectively, in either order) the maximum and minimum elements of~$A_l$, then $p(a_1)$~and~$p(a_2)$ are the corresponding elements of~$A_k$, so $(p(m_1),p(m_2))\in E^{\A_n}$. Similarly if $m_1$~and~$m_2$ are the immediate neighbors of the maximum and minimum elements, since their proximity ensures that $(p(m_1),p(m_2))\in E^{\A_n}$. Note that these cases are exhaustive. The converse cases also clearly hold for all $(p(m_1),p(m_2))$. Thus $p$~preserves~$E$ as desired.
+\end{proof}
+
+\exercise{2.3.14}
+Let $\obar{a}\mapsto\obar{b}\in\pisos(\A,\B)$ and $m\ge0$. Then
+$$\B\models\varphi_{\A,\obar{a}}^m[\obar{b}]\quad\text{iff}\quad(\A,\obar{a})\iso_m(\B,\obar{b})\footnote{We assume this notation means that $\obar{a}\mapsto\obar{b}$ admits of extension $m$~times using the back and forth properties. This notation is not defined in the text.}$$
+\begin{proof}
+By Theorem~2.3.3, $\B\models\varphi_{\A,\obar{a}}^m[\obar{b}]$ iff there exists a sequence $(I_j)_{j\le m}$ with $\obar{a}\mapsto\obar{b}\in I_m$ such that $(I_j)_{j\le m}:\A\iso_m\B$. Clearly if this holds, then $\obar{a}\mapsto\obar{b}$ admits of extension using the back and forth properties $m$~times (formally this is proved by induction on~$m$).
+
+Conversely, if $\obar{a}\mapsto\obar{b}$ admits of extension $m$~times using the back and forth properties, we can construct such a sequence $(I_j)_{j\le m}$. For $p\in\pisos(\A,\B)$ and $a\in A$, denote by~$F(p,a)$ a partial isomorphism extending~$p$ to include $a$~in its domain, when one exists; similarly define~$B(p,b)$ for $b\in B$. Now set $I_m=\{\obar{a}\mapsto\obar{b}\}$. For $j<m$, set
+$$I_j=\{\,F(p,a)\mid p\in I_{j+1},a\in A\,\}\union\{\,B(p,b)\mid p\in I_{j+1},b\in B\,\}$$
+It is immediate by induction on~$i\le m$ that each $I_{m-i}$~is a nonempty set of partial isomorphisms from $\A$~to~$\B$, and that every $p\in I_{m-i}$ can be extended (at least) $m-i$ times using the back and forth properties. From this it follows that $(I_j)_{j\le m}:\A\iso_m\B$ as desired.
+\end{proof}
+
+\exercise{2.3.15}
+Suppose $(I_j)_{j\le m}:\A\iso_m\B$. Then $I_j\subseteq W_j(\A,\B)$ (where the set $W_j(\A,\B)$~is defined as on p.~20).
+\begin{proof}
+Let $p\in I_j$. Write $p=\obar{a}\mapsto\obar{b}$. As noted in a previous exercise, it is immediate by induction on $j\le m$ that $p$~can be extended (at least) $j$~times in the hierarchy~$(I_j)$ using the back and forth properties. This provides a winning strategy for the duplicator in $G_j(\A,\obar{a},\B,\obar{b})$. Thus $p$~is a winning position for the duplicator in the $j$-game, that is, $p\in G_j(\A,\B)$. Since $p$~was arbitrary, $I_j\subseteq G_j(\A,\B)$.
+\end{proof}
+
+\note
+Let $\A$~be a $\tau$-structure and $\obar{a}=(a_1,\ldots,a_s)\in A^s$. Define recursively the $m$-isomorphism types of~$\obar{a}$ in~$\A$ in the following way:
+$$\itypes^0(\A,\obar{a})=\{\,\varphi\mid\A\models\varphi[\obar{a}], \text{$\varphi(v_1,\ldots,v_s) $~atomic}\,\}$$
+and
+$$\itypes^{m+1}(\A,\obar{a})=\{\,\itypes^m(\A,\obar{a}a)\mid a\in A\,\}$$
+We verify that for all $\tau$-structures~$\B$ and $\obar{b}\in B^s$,
+$$\text{(i) }\itypes^m(\A,\obar{a})=\itypes^m(\B,\obar{b})\quad\text{iff}\quad\text{(ii) }\varphi_{\A,\obar{a}}^m=\varphi_{\B,\obar{b}}^m$$
+\begin{proof}
+We proceed by induction on~$m$. For $m=0$, note that (i)~holds iff $(\A,\obar{a})$ and $(\B,\obar{b})$ agree on atomic $\tau$-formulas (and hence also negated atomic $\tau$-formulas) $\varphi(v_1,\ldots,v_s)$, which holds iff (ii)~holds.
+
+Now suppose $m>0$ and the result holds for~$m-1$. Then (i)~holds iff
+$$\{\,\itypes^{m-1}(\A,\obar{a}a)\mid a\in A\,\}=\{\,\itypes^{m-1}(\B,\obar{b}b)\mid b\in B\,\}$$
+which, by the induction hypothesis, holds iff
+$$\{\,\varphi_{\A,\obar{a}a}^{m-1}\mid a\in A\,\}=\{\,\varphi_{\B,\obar{b}b}^{m-1}\mid b\in B\,\}$$
+which holds iff, for some syntactic ordering,
+\begin{align*}
+\bigland_{a\in A}\exists v_{s+1}\varphi_{\A,\obar{a}a}^{m-1}(\obar{v},v_{s+1})&=\bigland_{b\in B}\exists v_{s+1}\varphi_{\B,\obar{b}b}^{m-1}(\obar{v},v_{s+1})\\
+\biglor_{a\in A}\varphi_{\A,\obar{a}a}^{m-1}(\obar{v},v_{s+1})&=\biglor_{b\in B}\varphi_{\B,\obar{b}b}^{m-1}(\obar{v},v_{s+1})
+\end{align*}
+which holds iff (ii)~holds.
+\end{proof}
+
+\booksection{2.4}
+\note
+Let $\tau$~be relational, $\A$~and~$\B$ be $\tau$-structures, and $r\ge0$. Suppose $a\in A$ and $b\in B$ have the same $r$-ball type, that is
+$$\pi:(\S^{\A}(r,a),a)\iso(\S^{\B}(r,b),b)$$
+We verify that $\pi$~preserves sub-balls. More specifically, suppose $r'\le r$ and $a'\in A$ with $\S^{\A}(r',a')\subseteq\S^{\A}(r,a)$. Then
+$$\pi[\S^{\A}(r',a')]=S^{\B}(r',\pi(a'))$$
+In particular, $\pi|_{\S^{\A}(r',a')}:\S^{\A}(r',a')\iso S^{\B}(r',\pi(a'))$.
+\begin{proof}
+Suppose $x\in\S^{\A}(r',a')$. If $x=a'$, the result holds trivially, so suppose $x\ne a'$. This means that for some $1\le k\le r'$, there exist relation symbols $R_1,\ldots,R_k\in\tau$ and tuples $\obar{c}_1,\ldots,\obar{c}_k\in A$ satisfying the following properties:
+\begin{enumerate}[itemsep=0pt]
+\item $a'\in\obar{c}_1$, $x\in\obar{c}_k$
+\item For all $1\le i\le k$, $R_i^{\A}\obar{c}_i$
+\item For all $1<i\le k$, there exists an element $c\in\obar{c}_{i-1}\sect\obar{c}_i$
+\end{enumerate}
+It is immediate by induction on~$i$ that $\obar{c}_i\in\S^{\A}(r',a')$ for all $1\le i\le k$. Thus, since $\pi$~is an isomorphism, we have:
+\begin{enumerate}[itemsep=0pt]
+\item $\pi(a')\in\pi(\obar{c}_1)$, $\pi(x)\in\pi(\obar{c}_k)$
+\item For all $1\le i\le k$, $R_i^{\B}\pi(\obar{c}_i)$
+\item For all $1<i\le k$, there exists an element $\pi(c)\in\pi(\obar{c}_{i-1})\sect\pi(\obar{c}_i)$	
+\end{enumerate}
+Thus $\pi(x)\in S^{\B}(r',\pi(a'))$. Since $x$~was arbitrary,
+$$\pi[\S^{\A}(r',a')]\subseteq S^{\B}(r',\pi(a'))$$
+The reverse inclusion is proved analogously.
+\end{proof}
+
+\exercise{2.4.7}
+The class of finite acyclic digraphs is not second-order axiomatizable by a sentence of the form
+$$\varphi=\exists P_1\cdots\exists P_r\psi$$
+where $P_1,\ldots,P_r$ are unary relation variables and $\psi$~is a first-order sentence over the vocabulary $\tau=\{E,P_1,\ldots,P_r\}$.
+\begin{proof}
+Let $\H_l=(H_l,E_l)$ be the finite acyclic digraph given by
+$$H_l=\{0,\ldots,l\}\quad E_l=\{\,(i,i+1)\mid i<l\,\}$$
+We first prove two lemmas:
+\begin{lem}
+Let $m\ge0$. Then there exists an~$l_0$ such that for all $l\ge l_0$ and all $\tau$-structures $\Hx_l=(\H_l,P_1,\ldots,P_r)$, there exist $a,b\in H_l$ with disjoint $3^m$-balls of the same isomorphism type.
+\end{lem}
+\begin{proof}
+Note that since $P_1,\ldots,P_r$ are unary, every $3^m$-ball in a structure~$\Hx_l$ has cardinality at most $2\cdot3^m+1$. As in the proof of Corollary~2.1.2, there are only finitely many pairwise nonisomorphic $3^m$-balls (over $\tau$-structures~$\Hx_l$), hence there are only finitely many $3^m$-ball types. Let $i$~be the number of $3^m$-ball types. Then set
+$$l_0=(i+1)(2\cdot3^m+1)$$
+For any $l\ge l_0$, a structure~$\Hx_l$ must contain two disjoint $3^m$-balls of the same isomorphism type. In fact, we see that such a structure must contain two such balls of cardinality $2\cdot3^m+1$.
+\end{proof}
+\begin{lem}
+Let $m\ge0$ and suppose $\Hx_l$~contains elements $a,b$ with disjoint $3^m$-balls of the same isomorphism type and of cardinality $2\cdot3^m+1$. Let $a_+$~and~$b_+$ be the successors of $a$~and~$b$, respectively---that is, the elements with $E_laa_+$ and $E_lbb_+$.
+
+Construct~$\Hx_l'$ from~$\Hx_l$ by setting
+$$E^{\Hx_l'}=(E^{\Hx_l}\diff\{(a,a_+),(b,b_+)\})\union\{(a,b_+),(b,a_+)\}$$
+Then $\Hx_l'$~is cyclic and $\Hx_l\equiv_m\Hx_l'$.
+\end{lem}
+\begin{proof}
+To prove $m$-equivalence, we argue that for each $3^m$-ball type~$\Gamma$, $\Hx_l$~and~$\Hx_l'$ both contain the same number of elements with $3^m$-ball type~$\Gamma$. The claim then follows from Hanf's Theorem (Theorem~2.4.1).
+
+Indeed, each $3^m$-ball in~$\Hx_l$ corresponds naturally, and injectively, to a $3^m$-ball of the same isomorphism type in~$\Hx_l'$, and conversely. For example, given a $3^m$-ball~$S(3^m,a')$ of an element $a'\in H_l$, map any elements in~$S(3^m,a')$ coinciding with $a_+,a_{++},\ldots$ to $b_+,b_{++},\ldots$, and conversely, and map according to the identity for the remaining elements. It follows from our assumptions that the map constructed is an isomorphism.
+
+To see that $\Hx_l'$~is cyclic, simply note that the endpoints from~$\Hx_l$ must both land together between $a$~and~$b$ on one side of~$\Hx_l'$ or the other (where `side' can be made precise in a natural way). Hence in the construction of~$\Hx_l'$ from~$\Hx_l$, a cycle was created on one side of $a$~and~$b$ or the other.
+\end{proof}
+
+Now suppose that
+$$\varphi=\exists P_1\cdots\exists P_r\psi$$
+axiomatizes the finite acyclic digraphs as above. Then for a finite digraph~$\D$, $\D$~is acyclic iff $\D\models\varphi$, which holds iff there exist $P_1,\cdots,P_r\subseteq D$ such that
+$$(\D,P_1,\ldots,P_r)\models\psi$$
+Let $m$~be the quantifier rank of~$\psi$. Choose $l_0$~as in the first lemma and consider~$\H_{l_0}$. Since $\H_{l_0}$~is acyclic, there exist $P_1,\ldots,P_r\subseteq H_l$ such that
+$$(\H_{l_0},P_1,\ldots,P_r)\models\psi$$
+By the second lemma,
+$$(\H_{l_0}',P_1,\ldots,P_r)\models\psi$$
+but $H_{l_0}'$~is cyclic---a contradiction.
+\end{proof}
+
+We see, however, that the class of finite acyclic digraphs \emph{can} be second-order axiomatized by a sentence of the form
+$$\varphi=\forall P\psi$$
+where $P$~is unary and $\psi$~is a first-order sentence over $\{E,P\}$. Indeed, this follows immediately from the following lemma:
+\begin{lem}
+The class of finite cyclic digraphs can be second-order axiomatized by a sentence of the form
+$$\varphi'=\exists P\psi'$$
+where $P$~is unary and $\psi'$ is a first-order sentence over $\{E,P\}$.
+\end{lem}
+\begin{proof}
+Intuitively, $\psi'$~says `$P$~is a cycle'. Formally, set
+\begin{multline*}
+\psi'=\exists x Px\land\forall x(Px\limp\\
+	\exists y(Py\land Exy\land\forall z((Pz\land Exz)\limp y=z))\land\\
+	\exists y(Py\land Eyx\land\forall z((Pz\land Ezx)\limp y=z)))
+\end{multline*}
+Let $\D$~be an arbitrary finite digraph. If $\D\models\varphi'$, then there exists some $P\subseteq D$ such that $(\D,P)\models\psi'$. Then $P$~is nonempty, so choose $p\in P$. Since $P$~is finite and $\psi'$~holds for~$P$, it is easy to verify that there exists a unique path through all other elements of~$P$ and returning to~$p$. Thus $P$~is a cycle, and $\D$~is cyclic as desired.
+
+Conversely, if $\D$~is a finite cyclic digraph, let~$P$ be the elements in a cycle.
+\end{proof}
+
+Note that a finite digraph~$\D$ is acyclic iff $\D\not\models\varphi'$, which holds iff $\D\models\lnot\varphi'$, which holds iff $\D\models\forall P\lnot\psi'$.
+
+\bigskip
+\exercise{2.4.8}
+There exists a formula
+$$\varphi(x,y)=\exists P\psi$$
+where $P$~is unary and $\psi$~is first-order over $\{E,P\}$, such that for all finite graphs~$\G$ and $a,b\in G$, $\G\models\varphi[a,b]$ iff $a\con b$ in~$\G$.
+\begin{proof}
+Intuitively, $\varphi$~says `$x$~equals~$y$ or else there exists a path~$P$ from~$x$ to~$y$'. Formally, set
+\begin{multline*}
+\psi(x,y)=(x=y)\lor(Px\land Py\land\\
+	\exists w(Pw\land Exw\land\forall z(Pz\land Exz\limp w=z))\land\\
+	\exists w(Pw\land Eyw\land\forall z(Pz\land Eyz\limp w=z))\land\\
+	\forall z(Pz\land\lnot(x=z)\land\lnot(y=z)\limp\\
+		\exists w_1\exists w_2(\lnot(w_1=w_2)\land Pw_1\land Pw_2\land Ezw_1\land Ezw_2\land\\
+			\forall u(Pu\land Ezu\limp(u=w_1\lor u=w_2)))))
+\end{multline*}
+\end{proof}
+
+Note that the second-order sentence $\forall x\forall y\varphi(x,y)$ characterizes the finite connected graphs. Thus it cannot be logically equivalent to a sentence of the form
+$$\exists P_1\cdots\exists P_r\chi$$
+with unary $P_1,\ldots,P_r$ and first-order~$\chi$ over $\{E,P_1,\ldots,P_r\}$, for this would contradict Proposition~2.4.5.
+
+\booksection{2.5}
+\exercise{2.5.3}
+Let $\tau$~be relational and let $\Phi\subseteq\fo[\tau]$ be the smallest set containing the atomic formulas and closed under conjunction, disjunction, and existential quantification. Now let $\ep$~be the set of sentences in~$\Phi$. We call $\ep$~the set of \emph{existential positive sentences}.
+
+Then $\ep$~is preserved under homomorphisms.
+\begin{proof}
+We prove the stronger claim that $\Phi$~is preserved under homomorphisms in the following precise sense: for all $\varphi\in\Phi$, and for all $\tau$-structures $\A$~and~$\B$ where $h:A\to B$ is a homomorphism, if $\obar{a}\in A$, then
+$$\A\models\varphi[\obar{a}]\quad\text{implies}\quad\B\models\varphi[h(\obar{a})]$$
+The desired result is an immediate corollary.
+
+We proceed by induction on~$\varphi$. If $\varphi$~is atomic, then $\varphi=Rx_1\cdots x_n$ for some $R\in\tau$ (recall $\tau$~is relational). Now $\A\models\varphi[\obar{a}]$ iff $\obar{a}'\in R^{\A}$ (where $\obar{a}'$~is determined from~$\obar{a}$ by $x_1,\ldots,x_n$), which, by the homomorphism property, implies $h(\obar{a}')\in R^{\B}$, which holds iff $\B\models\varphi[h(\obar{a})]$. The conjunction and disjunction cases are immediate by induction. Suppose $\varphi=\exists x\psi$. Then $\A\models\varphi[\obar{a}]$ iff there exists $a\in A$ such that $\A\models\psi[\obar{a},a]$. By the induction hypothesis then, $\B\models\psi[h(\obar{a}),h(a)]$, which implies $\B\models\varphi[h(\obar{a})]$.
+\end{proof}
+
+\exercise{2.5.4}
+Let $\varphi$~be a first-order sentence. Then every (finite) model of~$\varphi$ contains a minimal model of~$\varphi$.
+\begin{proof}
+Suppose not, and let $\A$~be a finite model of~$\varphi$ containing no minimal model of~$\varphi$. This means that every submodel of~$\varphi$ in~$\A$ (including~$\A$ itself) contains a proper submodel of~$\varphi$. Thus we can construct a properly decreasing sequence
+$$\A\supset\A_1\supset\A_2\supset\cdots$$
+of submodels of~$\varphi$. Now it is immediate by induction on~$n$ that
+$$\card{A_n}\le\card{A}-n$$
+But $\card{A}=n$ for some~$n$, hence $\card{A_n}=0$---contradicting the fact that $\A_n$~is a structure (which must have a nonempty universe). Thus our original supposition is false, and the desired result holds.
+\end{proof}
+
+\note
+Let $\Phi\subseteq\fo_0[\tau]$ (where $\fo_0[\tau]$~denotes the set of first-order $\tau$-sentences). Let $\Phi^B$~be the smallest set containing~$\Phi$ that is closed under the boolean operations ($\lnot$, $\land$, $\lor$, $\limp$, $\liff$). We call $\Phi^B$~the \emph{boolean closure} of~$\Phi$.
+
+Suppose $\A$~and~$\B$ agree on~$\Phi$---that is, for all $\varphi\in\Phi$,
+$$\A\models\varphi\quad\text{iff}\quad\B\models\varphi$$
+Then $\A$~and~$\B$ agree on~$\Phi^B$.
+\begin{proof}
+Proceed by (closure) induction on $\varphi\in\Phi^B$. For $\varphi\in\Phi$, the result holds by assumption. If the result holds for $\varphi\in\Phi^B$, then
+\begin{center}
+\begin{tabular}{rcll}
+$\A\models\lnot\varphi$&iff&not $\A\models\varphi$&by definition\\
+	&iff&not $\B\models\varphi$&by induction\\
+	&iff&$\B\models\lnot\varphi$&by definition
+\end{tabular}
+\end{center}
+Thus the result holds for~$\lnot\varphi$. Similarly for the other cases.
+
+Note that formally, what we have shown is that the subset~$\Phi_0^B$ of~$\Phi^B$ for which the result holds contains~$\Phi$, and is closed under the boolean operations. Since $\Phi^B$~is the smallest such set, $\Phi^B\subseteq\Phi_0^B$, hence $\Phi^B=\Phi_0^B$ as desired.
+\end{proof}
+
+\bookchapter{3}
+\booksection{3.1}
+\note
+Let $\tau$~be an arbitrary symbol set. We give an alternate $\so[\tau]$-axiomatization of~$\even[\tau]$ (see p.~37). Note that the authors construct a sentence~$\varphi$ which states that there exists a binary equivalence relation all of whose equivalence classes contain exactly two elements. Thus a (finite) structure satisfies~$\varphi$ just in case it can be partitioned into $n$~pairs of elements for some~$n$, which holds just in case its universe has even cardinality (namely~$2n$).
+
+Another natural approach to this problem is to construct a sentence stating that the universe can be partitioned into two sets of the same cardinality. It is clear that a (finite) structure satisfies this sentence just in case it has even cardinality.
+
+We define
+\begin{multline*}
+\varphi=\exists X\exists Y\exists F(\exists x Xx\land\exists y Yy\land\forall x(Xx\liff\lnot Yx)\land\\
+	\forall x(\exists y Fxy\limp Xx)\land\forall y(\exists x Fxy\limp Yy)\land\\
+	\forall x(Xx\limp\exists y(Fxy\land\forall z(Fxz\limp y=z)))\land\\
+	\forall y(Yy\limp\exists x(Fxy\land\forall z(Fzy\limp x=z))))
+\end{multline*}
+
+\noindent Note that this sentence and that used by the authors are both~$\Sigma_1^1$.
+
+\bigskip
+\proposition{3.1.3}
+Let $\tau$~be a finite vocabulary and $m\ge0$. The relation~$\msoequiv_m$ is an equivalence relation with finitely many equivalence classes.
+\begin{proof}
+The fact that $\msoequiv_m$~is an equivalence relation is immediate from the definition. To prove that there are only finitely many equivalence classes, we claim that for all $r,s,j\ge0$,
+$$\Psi_{r,s,j}=\{\,\psi_{\A,\obar{a},\obar{P}}^j\mid\text{$\A$~a $\tau$-structure, $\obar{a}\in A^r$, $\obar{P}\in\ps(A)^s$}\,\}$$
+is finite. Indeed, this follows by induction on~$j$. For $j=0$, since $\tau$~is finite, the set
+$$\Phi_{r,s}=\{\,\varphi(x_1,\ldots,x_r,X_1,\ldots,X_s)\in\fo[\tau]\mid\text{$\varphi$~atomic or negated atomic}\,\}$$
+is finite for all $r,s$. Hence there are only finitely many conjunctions over~$\Phi_{r,s}$, and thus $\Psi_{r,s,j}$~is finite for all $r,s$ as desired.
+
+Suppose the claim holds for~$j$---that is, $\Psi_{r,s,j}$~is finite for all $r,s$. It is then easy to verify by the definition that for all $\A,\obar{a},\obar{P}$, $\psi_{\A,\obar{a},\obar{P}}^{j+1}$~is in fact a first-order $\tau$-sentence, and there are only finitely many such sentences. Thus $\Psi_{r,s,j+1}$~is finite for all $r,s$. By induction, the claim holds for all~$j$.
+
+A corollary of this claim (set $r,s=0$ and $j=m$) is that the set
+$$\Psi_m=\{\,\psi_{\A}^m\mid\text{$\A$~a $\tau$-structure}\,\}$$
+is finite. We claim that the finite set
+$$P_m=\{\,\mods(\psi_{\A}^m)\mid \psi_{\A}^m\in\Psi_m\,\}$$
+is the set of equivalence classes for~$\msoequiv_m$. Indeed, this is now immediate from Exercise~3.1.2, since for all $\tau$-structures~$\B$,
+$$\B\models\psi_{\A}^m\quad\text{iff}\quad\A\msoequiv_m\B$$
+Thus $\mods(\psi_{\A}^m)$~is precisely the $\msoequiv_m$-equivalence class of~$\A$.
+\end{proof}
+
+\booksection{3.2}
+\note
+Every subformula of an $\Lio$-sentence contains only finitely many free variables.
+\begin{proof}
+Let $\varphi$~be an $\Lio$-sentence and suppose towards a contradiction that $\psi$~is a subformula of~$\varphi$ containing infinitely many free variables $x_1,x_2,\ldots$ We note that $\psi$~must occur within an infinite nested quantification over $x_1,x_2,\ldots$ in~$\varphi$. But it is immediate by induction on $\Lio$-formulas that no formula contains an infinite nested quantification. Thus the claim holds.
+\end{proof}
+
+\note
+Let $T$~be a theory such that all models of~$T$ are elementarily equivalent. Then for every sentence~$\varphi$, $T\models\varphi$ or $T\models\lnot\varphi$.
+\begin{proof}
+If $T$~is not satisfiable, the result holds trivially, so suppose $\A\models T$. Note that every model of~$T$ satisfies precisely the same sentences as~$\A$. Thus for any sentence~$\varphi$, if $\A\models\varphi$, then every model of~$T$ satisfies~$\varphi$, so $\Phi\models\varphi$. If not $\A\models\varphi$, then (by definition) $\A\models\lnot\varphi$, so $T\models\lnot\varphi$.
+\end{proof}
+
+\exercise{3.2.14}
+Let $\A$~and~$\B$ be $\tau$-structures. Then
+$$W_0(\A,\B)\supseteq\cdots\supseteq W_m(\A,\B)\supseteq\cdots\supseteq W_{\infty}(\A,\B)$$
+\begin{proof}
+We claim first that for all $m>0$, $W_{m-1}\supseteq W_m$. Suppose $\obar{a}\mapsto\obar{b}\in W_m$. Then by definition the duplicator wins $G_m(\A,\obar{a},\B,\obar{b})$. By Lemma 2.2.4(c), the duplicator wins $G_{m-1}(\A,\obar{a},\B,\obar{b})$. Thus $\obar{a}\mapsto\obar{b}\in W_{m-1}$ as desired.
+
+Now we claim that for all $m\ge0$, $W_m\supseteq W_{\infty}$. Let $\obar{a}\mapsto\obar{b}\in W_{\infty}$. To win any play of $G_m(\A,\obar{a},\B,\obar{b})$, the duplicator simply moves as it would in $G_{\infty}(\A,\obar{a},\B,\obar{b})$. Then (by the definition of winning in~$G_{\infty}$) the duplicator wins the play in~$G_m$. Thus $\obar{a}\mapsto\obar{b}\in W_m$ as desired.
+
+These two claims imply the desired result.
+\end{proof}
+
+Suppose now that $A$~or~$B$ is finite. Then there exists $m_0\le 1+\min\{\card{A},\card{B}\}$ such that
+$$W_0(\A,\B)\supset\cdots\supset W_{m_0}(\A,\B)=W_{\infty}(\A,\B)$$
+\begin{proof}
+Suppose (say) that $A$~is finite and $\card{A}\le\card{B}$. Let $m_0'=1+\card{A}$. We first show that $W_{m_0'}\subseteq W_{\infty}$. Let $\obar{a}\mapsto\obar{b}\in W_{m_0'}$. Thus the duplicator has a winning strategy for $G_{m_0'}(\A,\obar{a},\B,\obar{b})$. In particular, the duplicator can win any play in which the spoiler chooses all of the elements in~$A$ within its first $m_0'-1$ moves. Note that the resulting map $\pi\supseteq\obar{a}\mapsto\obar{b}$ after $m_0'-1$ moves must be surjective onto~$B$, for otherwise the spoiler could choose an element $b\in B\diff\rng(\pi)$ on the $m_0'$-th move, to which the duplicator would have no winning response---a contradiction. Thus $\pi$~is an isomorphism. This provides a winning strategy for the duplicator in $G_{\infty}(\A,\obar{a},\B,\obar{b})$: the duplicator simply moves according to~$\pi$.
+
+By this and the result above, we have
+$$W_0\supseteq\cdots\supseteq W_{m_0'}=W_{\infty}$$
+We claim (without proof at the moment) that there exists $0\le m_0\le m_0'$ giving the desired result.
+\end{proof}
+
+\booksection{3.3}
+\note
+Let $\tau=\{<\}$ and define $\fo^2[\tau]$-formula~$\psi_n(x)$ inductively as follows:
+$$\psi_0(x)=\forall y\lnot\,y<x\quad\psi_{n+1}=\forall y(y<x\liff\biglor_{i\le n}\exists x(x=y\land\psi_i(x)))$$
+We verify that for all orderings~$\A$ and $a\in A$, and all $n\ge0$,
+$$\A\models\psi_n[a]\quad\text{iff}\quad\text{$a$ is the $n$-th element of~$<^{\A}$}$$
+\begin{proof}
+Let $\A$~be an ordering. We proceed by induction on~$n$. Case $n=0$ is trivial. Now suppose the claim holds for~$n$. If $a$~is the $(n+1)$-th element of~$<^{\A}$, then the elements less than~$a$ on~$<^{\A}$ are precisely the $i$-th elements, for $i\le n$. Thus $\A\models\psi_{n+1}[a]$.
+
+Conversely, suppose $\A\models\psi_{n+1}[a]$ and let $j$~be the position of~$a$ in~$<^{\A}$ (note that $j$~is well-defined since $\A$~is an ordering). If $j<n+1$, then by the induction hypothesis $\A\models\psi_i[a]$ for some $i\le n$. But then (by way of~$\psi_{n+1}$) $a<a$---contradicting the fact that $\A$~is an ordering. Thus $j\ge n+1$. If $j>n+1$, then in particular there exists an $(n+1)$-th element of~$<^{\A}$, say $a'$, where $a'<^{\A}a$. Then (again by way of~$\psi_{n+1}$) we must have $\A\models\psi_i[a']$ for some $i\le n$---contradicting the induction hypothesis. Thus $j=n+1$ as desired.
+\end{proof}
+\noindent Note that all properties of an ordering (irreflexivity, transitivity, and trichotomy) were used in the proof.
+
+\bigskip
+\example{3.3.6}
+In the following, for a pebble~$\alpha$ in a pebble game, let $\alpha'$~denote the object marked by~$\alpha$ if $\alpha$~marks an object, or else let $\alpha'=*$.
+\begin{enumerate}
+\item[(a)] Let $\tau=\emptyset$ and $\A$~and~$\B$ be $\tau$-structures with $\card{A},\card{B}\ge s$. Then the duplicator wins~$G_{\infty}^s(\A,\B)$.
+\begin{proof}
+We describe a winning strategy for the duplicator in~$G_{\infty}^s(\A,\B)$. Suppose that on its $j$-th move the spoiler places a pebble~$\alpha_i$ on the board in~$\A$. Then on its $j$-th move, the duplicator considers two cases:
+\begin{enumerate}
+\item[(i)] If $\alpha_i'=\alpha_k'$ for some $k\ne i$, then the duplicator chooses $\beta_i'=\beta_k'$.
+\item[(ii)] If $\alpha_i'\ne\alpha_k'$ for all $k\ne i$, note that there are at most $s-1$ pebbles other than~$\alpha_k$ on the board in~$\A$ and thus (trivially by induction on~$j$) at most $s-1$ pebbles~$\beta_k$ on the board in~$\B$. Thus there are at most $s-1$ pebbled elements in~$B$. Now $\card{B}\ge s$, so there exists an unpebbled $b\in B$. The duplicator chooses $\beta_i'=b$.
+\end{enumerate}
+The duplicator uses an analogous strategy in case the spoiler places a pebble~$\beta_i$ on the board in~$\B$ on its $j$-th move.
+
+It is easily verified by induction on~$j$ that this is a winning strategy for the duplicator. Indeed, for $j=0$ this holds trivially since $\emptyset\mapsto\emptyset$ is a partial isomorphism. If $j>0$ and the pebble configuration after the $(j-1)$-th moves induces an $s$-partial isomorphism, then the above strategy of the duplicator preserves well-definedness and injectivity for the map induced after the $j$-th moves. Since $\tau=\emptyset$, this map is an $s$-partial isomorphism.
+
+Thus the duplicator wins~$G_{\infty}^s(\A,\B)$.
+\end{proof}
+\item[(b)] Let $l\ge3$ and let $\A=\G_l$ and $\B=\G_l\dunion\G_l$ be graphs consisting of one and two cycles of length $l+1$, respectively. Then the duplicator wins~$G_{\infty}^2(\A,\B)$.
+\begin{proof}
+Recall that in~$G_{\infty}^2$, we are only working with pebbles $\alpha_1,\alpha_2$ in~$\A$ and $\beta_1,\beta_2$ in~$\B$. We describe part of a winning strategy for the duplicator; the remaining parts are similar.
+\begin{enumerate}
+\item If the spoiler places~$\beta_1$ on the board in~$\B$, the duplicator moves as follows:
+\begin{enumerate}
+\item If $\beta_2$~is off the board, the duplicator places~$\alpha_1$ anywhere in~$\A$.
+\item If $\beta_2$~is on the board and $\beta_1'=\beta_2'$, the duplicator chooses $\alpha_1'=\alpha_2'$.
+\item If $\beta_2$ is on the board and $\beta_1'\ne\beta_2'$, the duplicator moves as follows:
+\begin{enumerate}
+\item If $E^{\B}\beta_1'\beta_2'$, the duplicator places~$\alpha_1$ such that $E^{\A}\alpha_1'\alpha_2'$.
+\item If not $E^{\B}\beta_1'\beta_2'$, then note that since $l\ge3$, there exists $a\in A$ such that $a\ne\alpha_2'$ and not $E^{\A}a\alpha_2'$. The duplicator places~$\alpha_1$ on~$a$.
+\end{enumerate}
+\end{enumerate}
+\end{enumerate}
+As in the exercise above, it is verified by induction on the number of moves in a play that the duplicator wins~$\G_{\infty}^2$ as desired.
+\end{proof}
+Note that the spoiler wins~$\G_{\infty}^3(\A,\B)$. Indeed, to win, the spoiler first places $\beta_1$~and~$\beta_2$ on different cycles in~$\B$. The spoiler then chooses a direction in which to `approach'~$\alpha_1$ with $\alpha_2$~and~$\alpha_3$ in~$\A$, as follows: the spoiler places~$\alpha_3$ on the vertex adjacent to~$\alpha_2$ in the chosen direction towards~$\alpha_1$. Note that the duplicator must place~$\beta_3$ on same cycle as~$\beta_2$ in~$\B$. The spoiler then moves~$\alpha_2$ to the vertex adjacent to~$\alpha_3$ in the chosen direction. Again the duplicator must keep~$\beta_2$ on the same cycle. The spoiler continues in this manner until $\alpha_2$~(or~$\alpha_3$) is adjacent to~$\alpha_1$ and also to~$\alpha_3$ (respectively, $\alpha_2$). The duplicator will have no winning response for~$\beta_2$ (respectively, $\beta_3$) since only one edge connection can be preserved in~$\B$ among $\beta_1,\beta_2,\beta_3$.
+\end{enumerate}
+
+\exercise{3.3.7}
+\begin{enumerate}
+\item[(a)] Let $\tau=\{<,\ldots\}$ consist of relation symbols at most binary. Let $\A$~and~$\B$ be finite ordered $\tau$-structures. Then $\A\iso\B$ iff the duplicator wins~$G_{\infty}^2(\A,\B)$.
+\begin{proof}
+One direction is immediate: if $\pi:\A\iso\B$, then a winning strategy for the duplicator in~$G_{\infty}^2(\A,\B)$ is given by~$\pi$.
+
+For the converse, suppose the duplicator wins~$G_{\infty}^2(\A,\B)$. Write
+$$\A=a_1<^{\A}\cdots<^{\A}a_m\qquad \B=b_1<^{\B}\cdots<^{\B}b_n$$
+where $m=\card{A}$ and $n=\card{B}$. Assume without loss of generality that $m\le n$.
+
+We claim that in any play of~$G_{\infty}^2$ in which the duplicator wins, the following holds: for $k\le m$, the spoiler places pebble~$\alpha_i$ on~$a_k$ (or $\beta_i$~on~$b_k$) on his $j$-th move iff the duplicator places pebble~$\beta_i$ on~$b_k$ (respectively, $\alpha_i$~on~$a_k$) on his $j$-th move. This is verified by induction on~$k$. For $k=1$, if the spoiler places (say)~$\alpha_1$ on~$a_1$ but the duplicator fails to place~$\beta_1$ on~$b_1$, then in his next move the spoiler could place~$\beta_2$ on~$b_1$ such that $\beta_2'<^{\B}\beta_1'$. The duplicator would be forced in his next move to place~$\alpha_2$ such that $\alpha_1'<^{\A}\alpha_2'$---contradicting the assumption that the duplicator wins the play. Similarly for the converse, and for the other cases.
+
+Now suppose $k>1$ and the claim holds for values less than~$k$. Suppose the spoiler places (say)~$\alpha_1$ on~$a_k$ but the duplicator places~$\beta_1$ on~$b_l$ where $l\ne k$. By the induction hypothesis we must have $l>k$. Now in his next move the spoiler could place~$\beta_2$ on~$b_k$. In this case, by the induction hypothesis again and the fact that $\alpha_1'=a_k$, the duplicator must place~$\alpha_2$ such that $\alpha_1'<^{\A}\alpha_2'$. But $\beta_2'<^{\B}\beta_1'$---a contradiction. Again a similar argument verifies the converse and other cases. Thus by induction the claim holds for all $k\le m$.
+
+Note that if $m<n$, then the spoiler could first place~$\alpha_1$ on~$a_m$ so that (by our claim) the duplicator must place~$\beta_1$ on~$b_m$; the spoiler could then place~$\beta_2$ on~$b_{m+1}$, leaving the duplicator with no winning response---contradicting our assumption. Thus $m=n$.
+
+We claim that $\pi:a_i\mapsto b_i$ is an isomorphism. Clearly $\pi$~is well-defined, bijective, and preserves order. By our claim and the assumption that the duplicator wins~$G_{\infty}^2$, it is immediate that $\pi$~also preserves the other relations in~$\tau$. Thus $\pi$~is an isomorphism.
+\end{proof}
+\item[(b)] Let $m\ge s$. Then the duplicator wins~$G_m^s(\A,\B)$ iff the duplicator wins~$G_m^s(\A,\B)$ with the additional requirement that during the first~$s$ moves, distinct pebbles must be chosen. (Formally, for a given play of~$G_m^s$, set
+$$P_0=\emptyset\qquad P_{j+1}=P_j\union\{\alpha_i,\beta_i\}\quad(j<m)$$
+where $\alpha_i$~and~$\beta_i$ are the pebbles chosen on the $j$-th~move (disregarding which player choses which pebble). Thus $P_j$~is the set of all pebbles chosen during the first $j$~moves of the play. The additional requirement above states that for any play of~$G_m^s$, for all $j<s$, $P_{j+1}\supset P_j$.)
+\begin{proof}
+One direction is trivial: if the duplicator wins~$G_m^s$, then in particular the duplicator wins any play of~$G_m^s$ in which distinct pebbles are chosen during the first $s$~moves.
+
+Conversely, suppose the duplicator wins any play in the modified~$G_m^s$. To win a play~$p$ of~$G_m^s$, the duplicator constructs (and moves according to) a `parallel' play in which distinct pebbles are chosen during the first~$s$ moves. For $n\le 2m$, denote by~$I_n$ the initial segment of pebble/element selection pairs in~$p$ up to $n$~moves (where the moves of each player are counted separately). The duplicator initially sets $I_0'=I_0$. For $1\le j\le s$, assume that $I_{2j-2}'$~is defined and is an initial segment of a play in the modified~$G_m^s$ in which the duplicator has been moving according to his winning strategy. Suppose that on his $j$-th move the spoiler places pebble~$\gamma_i$ somewhere. Then on his $j$-th move, the duplicator proceeds as follows:
+\begin{enumerate}
+\item If $\gamma_i$~does not appear in~$I_{2j-2}'$, the duplicator defines
+$$I_{2j-1}'=(I_{2j-2}',(\gamma_i,\gamma_i'))$$
+He then moves in~$p$ as he would in the modified~$G_m^s$ (according to his winning strategy) in a play with initial segment~$I_{2j-1}'$. Suppose in doing so places pebble~$\rho_i$ somewhere. He then defines $I_{2j}'=(I_{2j-1}',(\rho_i,\rho_i'))$.
+\item If $\gamma_i$~\emph{does} appear in~$I_{2j-2}'$, the duplicator finds a new pebble~$\gamma_k$ to `substitute' for~$\gamma_i$ in the parallel play. More specifically, the duplicator finds $\gamma_k\not\in I_{2j-2}'$ (such a pebble exists since $j\le s$) and defines
+$$I_{2j-1}'=(I_{2j-2}',(\gamma_k,\gamma_i'))$$
+Now $I_{2j-1}'$~is an initial segment in the modified~$G_m^s$, so the duplicator can respond in~$p$ as he would (according to his winning strategy) in the modified~$G_m^s$ with initial segment~$I_{2j-1}'$. If in doing so he places~$\rho_i$ somewhere, he sets $I_{2j}'=(I_{2j-1}',(\rho_k,\rho_i'))$.
+\end{enumerate}
+It is now easy to verify by induction on~$j$ that this provides a winning strategy for the duplicator in~$G_m^s$ during the first $s$~moves. (Formally, one proves that for $1\le j\le s$, the map~$\pi$ induced by the pebble configuration in~$p$ after $j$~moves is a subset of the map induced by the pebble configuration in the parallel play of the modified~$G_m^s$ after $j$~moves (which the duplicator wins), and hence $\pi$~is an $s$-partial isomorphism.)
+
+Note that after $s$~moves, all pebbles are on the board in the parallel play. If all pebbles are also on the board in~$p$, then $p$~corresponds to its own parallel play, and the duplicator can simply move according to its winning strategy for the modified~$G_m^s$ for the remainder of the moves in~$p$.
+
+If not all pebbles are on the board in~$p$ after $s$~moves, then at least one pebble required a substitute in the parallel play. Associate with each pebble on the board in~$p$ its most recent substitute in the parallel play, if it required one, or itself if not; call these the \emph{associate pebbles}. Note that the pebbles off the board in~$p$ can be put in bijective correspondence with the non-associate pebbles in the parallel play. Thus for the remainder of~$p$, the duplicator can move pebbles on the board as he would their associates in the parallel play, and can handle new pebbles (in~$p$) with the non-associates in the parallel play.
+\end{proof}
+\end{enumerate}
+
+\note It is immediate by induction on~$m$ that the free variables in~${}^s\psi_{\A,\obar{a}}^m$ have indices in~$\supp(\obar{a})$ for all structures~$\A$ and $\obar{a}\in(A\union\{*\})^s$. In particular, $\psi_{\A}^m$~is a sentence.
+
+\bigskip
+\note For structures $\A$~and~$\B$, if the duplicator wins~$G_{\infty}^s(\A,\B)$, then the duplicator wins~$G_m^s(\A,\B)$ for all $m\ge0$. The converse holds if $\A$~and~$\B$ are finite.
+\begin{proof}
+The first claim is immediate by definitions. If $\A$~and~$\B$ are finite and the duplicator wins~$G_m^s$ for all $m\ge0$, then by Corollary 3.3.10(a), $\A\equiv_m^s\B$ for all $m\ge0$. Thus $\A\equiv^s\B$. By Corollary~3.3.3, $\A\equiv^{\Lio^s}\B$, so by Corollary 3.3.10(b), the duplicator wins~$G_{\infty}^s$.
+\end{proof}
+
+\exercise{3.3.14}
+\begin{enumerate}
+\item[(a)] Let $K$~be a class of finite structures. Then (i) $K$~is not axiomatizable in~$\fo^s$ iff (ii) for every $m\ge1$ there exist finite structures $\A$~and~$\B$ such that
+$$\A\iso_m^s\B\text{ but }\A\in K,\B\not\in K$$
+\begin{proof}
+Suppose towards a contradiction that (ii)~holds but (i)~fails to hold. Thus there exists a $\varphi\in\fo_0^s$ such that $K=\mods(\varphi)$. Set $m=\qr(\varphi)$. Choose $\A$~and~$\B$ as in~(ii). By Corollary 3.3.10(a), $\A\equiv_m^s\B$, hence $\A\models\varphi$ iff $\B\models\varphi$. Since $\A\in K$, $\A\models\varphi$, so $\B\models\varphi$. But $\B\not\in K$ by hypothesis, so $\B\not\models\varphi$---a contradiction. Thus (ii)~implies~(i).
+
+Conversely, suppose~(ii) fails to hold, so there exists some $m\ge1$ such that for all finite $\A$~and~$\B$,
+$$\A\in K\text{ and }\A\iso_m^s\B\text{ implies }\B\in K$$
+Define $\varphi=\biglor_{\A\in K}\psi_{\A}^m$. Note that $\varphi\in\fo_0^s$. We claim that $K=\mods(\varphi)$. Indeed, for all~$\B$, $\B\models\psi_{\B}^m$, thus $\B\models\varphi$ if $\B\in K$. Conversely, if $\B\models\varphi$, then $\B\models\psi_{\A}^m$ for some $\A\in K$. Again by Corollary 3.3.10(a), $\A\iso_m^s\B$, hence $\B\in K$ as desired.
+\end{proof}
+\item[(b)] Let $K$~be a class of finite structures and suppose $\Gamma$~is a global $n$-ary relation on~$K$. Then the following are equivalent for $s\ge n$:
+\begin{enumerate}
+\item[(i)] $\Gamma$~is $\Lio^s$-definable---that is, there exists $\varphi\in\Lio^s$ such that for all $\A\in K$ and $\obar{a}\in A$,
+$$\A\models\varphi[\obar{a}]\quad\text{iff}\quad\obar{a}\in\Gamma(\A)$$
+\item[(ii)] $\Gamma$~is closed under~$G_{\infty}^s$---that is, for all $\A,\B\in K$, $\obar{a}\in\Gamma(\A)$ and $\obar{b}\in B$, if the duplicator wins $G_{\infty}^s(\A,\obar{a}*\cdots*,\B,\obar{b}*\cdots*)$, then $\obar{b}\in\Gamma(\B)$.
+\end{enumerate}
+\begin{proof}
+Suppose (i)~holds. Let $\A,\B\in K$, $\obar{a}\in\Gamma(\A)$, and $\obar{b}\in B$. By~(i), $\A\models\varphi[\obar{a}]$. If the duplicator wins~$G_{\infty}^s(\ldots)$, then by Theorem 3.3.9(b), $\obar{a}$~satisfies in~$\A$ the same $\Lio^s$-formulas as $\obar{b}$~does in~$\B$. Thus $\B\models\varphi[\obar{b}]$, and by~(i) again, $\obar{b}\in\Gamma(\B)$. Thus (i)~implies~(ii).
+
+Conversely, suppose (ii)~holds. Define
+$$\varphi=\biglor\{\bigland_{m\ge0}\psi_{\A,\obar{a}}^m\mid\A\in K,\obar{a}\in\Gamma(\A)\}$$
+Note that $\varphi\in\Lio^s$. We claim that for all $\B\in K$ and $\obar{b}\in B$, $\B\models\varphi[\obar{b}]$ iff $\obar{b}\in\Gamma(\B)$. Indeed, if $\B\in K$ and $\obar{b}\in\Gamma(\B)$, then (trivially) $\B\models\psi_{\B,\obar{b}}^m[\obar{b}]$ for all $m\ge0$. Hence $\B\models\varphi[\obar{b}]$. Conversely, if $\B\models\varphi[\obar{b}]$, then for some $\A\in K$ and $\obar{a}\in\Gamma(\A)$, $\B\models\bigland_{m\ge0}\psi_{\A,\obar{a}}^m[\obar{b}]$. By Theorem 3.3.9(a), the duplicator wins~$G_m^s(\ldots)$ for all $m\ge0$. Thus (since $\A$~and~$\B$ are finite!), the duplicator wins~$G_{\infty}^s(\ldots)$. Hence by~(ii), $\obar{b}\in\Gamma(\B)$ as claimed. Thus (ii)~implies~(i).
+\end{proof}
+\end{enumerate}
+
+\exercise{3.3.26}
+$\Lioo$~has more expressive power than~$\fo$ on both the class of finite orderings and the class of finite graphs.
+\begin{proof}
+We use formulas from Example~3.3.1. For the class~$\ord$ of finite orderings, set
+$$\varphi_E=\biglor_{n\ge0}\chi_{2n}$$
+Then for all $\A\in\ord$, $\A\models\varphi_E$ iff $\A$~is even. Thus the even finite orderings are axiomatizable in~$\Lioo$, which is not the case in~$\fo$ by Example~2.3.6.
+
+For the class~$\graph$ of finite graphs, set
+$$\varphi_C=\forall x\forall y(x=y\biglor_{n\ge1}\varphi_n(x,y))$$
+Then for all $\G\in\graph$, $\G\models\varphi_C$ iff $\G$~is connected, so the class~$\conn$ of finite connected graphs is axiomatizable (relative to~$\graph$) in~$\Lioo$. This is not the case in~$\fo$ by Example~2.3.8. Note also that by a simple compactness argument, $\conn$~is not axiomatizable in~$\fo$ relative to the class of all graphs (including infinite graphs); of course, $\varphi_C$~still works in~$\Lioo$ relative to the class of all graphs.
+\end{proof}
+
+\booksection{3.4}
+\note For $l\ge 1$, $\models\ege{l}x\varphi(x)\liff\lnot\biglor_{j<l}\eeq{j}x\varphi(x)$.
+\begin{proof}
+This follows immediately from cardinality results. For $l\ge 1$, $\A\models\ege{l}x\varphi(x)$ iff there exist at least~$l$ elements in the set of solutions to~$\varphi(x)$ in~$\A$, which holds iff it is not the case for any $j<l$ that there exist exactly~$j$ elements in the set of solutions, which holds iff $\A\models\lnot\biglor_{j<l}\eeq{j}x\varphi(x)$.
+\end{proof}
+
+\proposition{3.4.4}
+Let $\G=(G,E^G,C_1^G,\ldots,C_r^G)$ be a stable colored graph and $a,b\in G$. Then $a$~and~$b$ have the same color iff the duplicator wins $\cg_{\infty}^2(\G,a*,\G,b*)$.
+\begin{proof}
+First suppose the duplicator wins~$\cg_{\infty}^2(\ldots)$. Then from Theorem~3.4.3 it follows that for all $\varphi(x)\in\Cio^s$,
+$$\G\models\varphi[a]\quad\text{iff}\quad\G\models\varphi[b]$$
+In particular, for all $j=1,\ldots,r$,
+$$\G\models C_jx[a]\quad\text{iff}\quad\G\models C_jx[b]$$
+Thus $a\in C_j^G$ iff $b\in C_j^G$, so $a$~and~$b$ have the same color.
+
+Conversely, suppose $a$~and~$b$ have the same color. We describe a winning strategy for the duplicator in~$\cg_{\infty}^2(\ldots)$. Suppose that on his $j$-th move the spoiler selects (say)~$\alpha_1$ and $X\subseteq G$. The duplicator responds on his $j$-th move as follows:
+\begin{enumerate}
+\item If $\alpha_2$~is not on the board, the duplicator simply responds with $Y=X$. When the spoiler then places~$\beta_1$ on an element in~$Y$, the duplicator moves according to the identity and places~$\alpha_1$ on the same element.
+\item If $\alpha_2$~is on the board, we assume that $\alpha_2'$~and~$\beta_2'$ were previously chosen to have the same color, and thus the same color type since $\G$~is stable. The duplicator chooses~$Y$ to have the same number of elements of each color directly connected to~$\beta_2'$ as $X$~has for~$\alpha_2'$, as well as the same number of elements of each color not directly connected (note that this is possible by the assumption of color type). Then $\card{X}=\card{Y}$. When the spoiler places~$\beta_1$ on an element in~$Y$, the duplicator responds as follows:
+\begin{enumerate}
+\item If $\beta_1'=\beta_2'$, then the duplicator sets $\alpha_1'=\alpha_2'$.
+\item If $\beta_1'\ne\beta_2'$ and $(\beta_1',\beta_2')\in E^G$, then the duplicator places~$\alpha_1$ on an element with the same color as~$\beta_1'$ and directly connected to~$\alpha_2'$ (this is possible by construction of~$Y$).
+\item If $\beta_1'\ne\beta_2'$, and $(\beta_1',\beta_2')\not\in E^G$, then the duplicator places~$\alpha_1$ on an element with the same color as~$\beta_1'$ but not directly connected to~$\alpha_2'$ (again possible by construction of~$Y$).
+\end{enumerate}
+\end{enumerate}
+The duplicator responds similarly for other moves of the spoiler.
+
+It is verified by induction on~$j$ (the number of moves) that this provides a winning strategy for the duplicator. Indeed, for $j=0$ note that by assumption $a$~and~$b$ have the same color and thus $a\mapsto b$ is a partial isomorphism. For $j>0$, if after the completion of $j-1$~moves $\alpha_i'\mapsto\beta_i'$ is a $2$-partial isomorphism, then the above strategy can be used by the duplicator and preserves the $2$-partial isomorphism property.
+\end{proof}
+
+\booksection{3.5}
+\exercise{3.5.3}
+In the finite, $\Loo$~has the Beth property, the Craig interpolation property, and is closed under order-invariant sentences.
+\begin{proof}
+For the Beth property, let $\tau$~be a (finite) symbol set and $R\not\in\tau$ an $n$-ary relation symbol. Suppose $\varphi\in\Loo[\tau\union\{R\}]$ defines~$R$ implicitly in the finite---that is, for all finite $\tau$-structures~$\A$ and $R_1^A,R_2^A\subseteq A^n$
+$$(\A,R_1^A)\models\varphi\text{ and }(\A,R_2^A)\models\varphi\text{ implies }R_1^A=R_2^A$$
+Then we claim there exists an explicit $\tau$-definition of~$R$ relative to~$\varphi$ in the finite---that is, there exists a formula $\psi(\obar{x})\in\Loo[\tau]$ such that
+$$\varphi\fimp\forall\obar{x}(R\obar{x}\liff\psi(\obar{x}))$$
+To prove this, set
+$$\psi(\obar{x})=\biglor\{\,\varphi_{\A,\obar{a}}^{\card{A}+1}\mid\A\text{ a finite $\tau $-structure}, R^A\subseteq A^n,(\A,R^A)\models\varphi, \obar{a}\in R^A\,\}$$
+Note that $\psi\in\Loo[\tau]$. Now suppose that $\B$~is a finite $\tau$-structure, $R^B\subseteq B^n$, and $(\B,R^B)\models\varphi$. If $\obar{b}\in R^B$, then since (trivially) $\B\models\varphi_{\B,\obar{b}}^{\card{B}+1}[\obar{b}]$, $\B\models\psi[\obar{b}]$. Conversely, suppose $\B\models\psi[\obar{b}]$, so for some finite $\tau$-structure~$\A$, $R^A\subseteq A^n$, and $\obar{a}\in R^A$ with $(\A,R^A)\models\varphi$, $\B\models\varphi_{\A,\obar{a}}^{\card{A}+1}[\obar{b}]$. Thus $(\A,\obar{a})\iso_{\card{A}+1}(\B,\obar{b})$, so $(\A,\obar{a})\iso(\B,\obar{b})$, say by way of~$\pi$. It follows (by induction on~$\varphi$) that $(\B,\pi(R^A))\models\varphi$, so by the implicit definition of~$R$, $\pi(R^A)=R^B$. Since $\pi(\obar{a})=\obar{b}$, we have $\obar{b}\in R^B$ as desired.
+
+For the interpolation property, suppose now that $\varphi$~is an $\Loo[\sigma]$-sentence, $\psi$~is an $\Loo[\tau]$-sentence, and $\varphi\fimp\psi$. We claim there exists an $\Loo[\sigma\sect\tau]$-sentence~$\chi$ (the interpolant) satisfying
+$$\varphi\fimp\chi\quad\text{and}\quad\chi\fimp\psi$$
+By Example~3.2.1(b), any class~$K$ of finite structures is axiomatizable in~$\Loo$. Thus let~$\chi$ axiomatize
+$$K=\{\,\A|_{(\sigma\sect\tau)}\mid\A\text{ a finite $\sigma $-structure}, \A\models\varphi\,\}$$
+We claim that $\chi$~is the desired interpolant. Indeed, if $\A$~is a finite $\sigma$-structure and $\A\models\varphi$, then $\A|_{(\sigma\sect\tau)}\in K$ and hence $\A\models\chi$. If $\B$~is a finite $\tau$-structure and $\B\models\chi$, then $\B|_{(\sigma\sect\tau)}\in K$, which by definition of~$K$ implies that $\B$ can be extended to a ($\sigma\union\tau$)-structure~$\B'$ with $\B'\models\varphi$. Now since $\varphi\fimp\psi$, $\B'\models\psi$ and hence $\B\models\psi$ as desired.
+
+In light of the interpolation property, it follows from the remarks on p.~64 that $\Loo$~is closed under order-invariant sentences.
+\end{proof}
+
+% Bibliography
+\begin{thebibliography}{0}
+\bibitem{ebbing99} Ebbinghaus, H.--D. and J.~Flum. \emph{Finite Model Theory}, 2nd~ed. New York: Springer, 1999.
+\end{thebibliography}
+\end{document}
